@@ -17,7 +17,7 @@ import java.util.List;
 public class Company implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "corporate_name",nullable = false, length = 50)

@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import enums.ProfileEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Getter@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "employee")
 public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +39,10 @@ public class Employee implements Serializable {
     @Column
     private ProfileEnum profile;
     @Column(name = "created_date")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdDate;
     @Column(name = "update_date")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date updateDate;
 
     @ManyToOne
@@ -49,8 +53,13 @@ public class Employee implements Serializable {
     @Column(name = "profile", nullable = false)
     private ProfileEnum profileEnum;
 
+
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Lauch>lauches;
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Company getCompany() {
+        return company;
+    }
 
     @Transient
     public Optional<BigDecimal> getHourValueOpt() {
@@ -60,5 +69,11 @@ public class Employee implements Serializable {
     @Transient
     public Optional<Float> getHoursWorkedDayOpt() {
         return Optional.ofNullable(hoursWorkedDay) ;
+    }
+
+
+    @PrePersist
+    public void prePersist(){
+        setCreatedDate(LocalDate.now());
     }
 }
