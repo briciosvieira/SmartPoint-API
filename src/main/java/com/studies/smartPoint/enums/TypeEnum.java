@@ -1,4 +1,4 @@
-package enums;
+package com.studies.smartPoint.enums;
 
 public enum TypeEnum {
     INICIO_TRABALHO,

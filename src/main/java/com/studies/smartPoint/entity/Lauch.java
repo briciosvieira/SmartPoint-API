@@ -1,7 +1,7 @@
-package entity;
+package com.studies.smartPoint.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import enums.TypeEnum;
+import com.studies.smartPoint.enums.TypeEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,14 +9,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Data@Getter@Setter
+@Getter@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "lauch")
 public class Lauch implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Temporal(TemporalType.TIMESTAMP)
     @Column( nullable = false)

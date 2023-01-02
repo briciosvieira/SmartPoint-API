@@ -1,7 +1,7 @@
-package entity;
+package com.studies.smartPoint.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import enums.ProfileEnum;
+import com.studies.smartPoint.enums.ProfileEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,10 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity
-@Data
+
 @Getter@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "employee")
 public class Employee implements Serializable {
     @Id
@@ -36,8 +37,7 @@ public class Employee implements Serializable {
     private Float hoursWorkedDay;
     @Column(name = "lunch_time")
     private Float lunchTime;
-    @Column
-    private ProfileEnum profile;
+
     @Column(name = "created_date")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdDate;

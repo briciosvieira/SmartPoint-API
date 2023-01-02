@@ -1,4 +1,4 @@
-package entity;
+package com.studies.smartPoint.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -13,11 +13,12 @@ import java.util.List;
 @Getter@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "company")
 public class Company implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "corporate_name",nullable = false, length = 50)
