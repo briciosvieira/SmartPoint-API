@@ -34,7 +34,7 @@ public class Company implements Serializable {
     @Column(name = "update_date")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private String updateDate;
-
+    @OneToMany
     private List<Employee> employees;
 
     @PrePersist
