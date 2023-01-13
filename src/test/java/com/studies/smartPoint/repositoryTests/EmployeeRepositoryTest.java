@@ -38,7 +38,8 @@ public class EmployeeRepositoryTest {
         this.employeeRepository.save(getDataEmployee(company));
     }
 
-    @After public final void tearDown(){
+    @After
+    public final void tearDown(){
         this.companyRepository.deleteAll();
     }
 
@@ -68,7 +69,7 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void testFindEmployeeEmailCpfButInvalidCpf(){
-        Employee employee = this.employeeRepository.findByCpfOrEmail("9999999999", EMAIL);
+        Employee employee = this.employeeRepository.findByCpfOrEmail("12345678988", EMAIL);
         assertNotNull(employee);
     }
 
@@ -76,7 +77,7 @@ public class EmployeeRepositoryTest {
         Employee employee = new Employee();
         employee.setName("Fabricio");
         employee.setProfileEnum(ProfileEnum.ROLE_ADMIN);
-        employee.setPassword(PasswordUtils.genetedBcrypt("123456"));
+        employee.setPassword("123456");
         employee.setCpf(CPF);
         employee.setEmail(EMAIL);
         employee.setCompany(company);
@@ -86,7 +87,7 @@ public class EmployeeRepositoryTest {
     private Company getDataCompany(){
         Company company = new Company();
         company.setCorporateName("Unidev");
-        company.setCnpj("51436364500001000");
+        company.setCnpj("51436364500001");
         return company;
     }
 
