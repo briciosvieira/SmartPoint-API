@@ -29,7 +29,7 @@ public class EmployeeRepositoryTest {
     @Autowired
     private CompanyRepository companyRepository;
 
-    private static final String EMAIL = "test@gmail.com";
+    private static final String EMAIL = "test@teste.com";
     private static final String CPF = "12345678900";
 
     @Before
@@ -63,7 +63,7 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void testFindEmployeeEmailCpfButInvalidEmail(){
-        Employee employee = this.employeeRepository.findByCpfOrEmail(CPF, "Tesla123@EMAIL.com");
+        Employee employee = this.employeeRepository.findByCpfOrEmail(CPF, "tesla123@gmail.com");
         assertNotNull(employee);
     }
 

@@ -34,7 +34,8 @@ public class Company implements Serializable {
     @Column(name = "update_date")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private String updateDate;
-    @OneToMany
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     @PrePersist
@@ -42,8 +43,6 @@ public class Company implements Serializable {
         setCreatedDate(LocalDate.now());
     }
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public List<Employee> getEmployees() {
-        return employees;
-    }
+
+
 }
