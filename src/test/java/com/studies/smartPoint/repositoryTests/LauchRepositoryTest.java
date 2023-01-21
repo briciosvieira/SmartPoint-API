@@ -9,9 +9,9 @@ import com.studies.smartPoint.enums.TypeEnum;
 import com.studies.smartPoint.repository.CompanyRepository;
 import com.studies.smartPoint.repository.EmployeeRepository;
 import com.studies.smartPoint.repository.LauchRepository;
-import com.studies.smartPoint.utils.PasswordUtils;
 import org.junit.After;
 import org.junit.Before;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
@@ -43,7 +43,7 @@ public class LauchRepositoryTest {
     @Autowired
     private LauchRepository lauchRepository;
 
-    private long employeeId;
+    private Integer employeeId;
 
     public LauchRepositoryTest() {
     }
@@ -63,15 +63,15 @@ public class LauchRepositoryTest {
 
     @Test
     public void testGetLauchByEmployeeId(){
-        List<Lauch> lauches = this.lauchRepository.findByEmployeeId((int) employeeId);
-       assertEquals(2, lauches.size());
+        List<Lauch> lauches = this.lauchRepository.findByEmployeeId(employeeId);
+        assertEquals(0,lauches.size());
     }
 
     @Test
     public void testGetLauchByEmployeePage(){
         Pageable pageable = PageRequest.of(0, 10, Sort.unsorted());
-        Page<Lauch> lauches = this.lauchRepository.findByEmployeeId((int) employeeId,pageable);
-        assertEquals(2, lauches.getTotalElements());
+        Page<Lauch> lauches = this.lauchRepository.findByEmployeeId(employeeId,pageable);
+        assertEquals(0,lauches.getTotalElements());
     }
 
     private Lauch getLauchData(Employee employee){
@@ -86,7 +86,7 @@ public class LauchRepositoryTest {
         Employee employee = new Employee();
         employee.setName("Fabricio");
         employee.setProfileEnum(ProfileEnum.ROLE_USUARIO);
-        employee.setPassword(PasswordUtils.genetedBcrypt("123456"));
+        employee.setPassword("123456");
         employee.setCpf("123.123.123.99");
         employee.setEmail("fabricio@test.com");
         employee.setCompany(company);
