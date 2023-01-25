@@ -1,5 +1,6 @@
 package com.studies.smartPoint.utils;
 
+import com.studies.smartPoint.serviceImp.CompanyServiceImp;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
